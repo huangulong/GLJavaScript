@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <title>hgl主页</title>
+            <m>JSContext</m>
+            <script type="text/javascript">
+                function jump1(){
+                    window.location.href = "xueleapp://message?mid=12321";
+                }
+            
+            function jump2(){
+                try{
+                    ocmethod();
+                }catch{
+                    alert("没有 oc method 方法哈");
+                }
+            }
+                
+            </script>
+    </head>
+<body>
+    <div id="hgl1">--------------1----------------------</div>
+    <br/>
+    <p>tel:17712345678</p>
+    <br/>
+    <div id="hgl2">--------------2----------------------</div>
+    <br/><br/>
+    <div id="hgl3" onclick="jump1();">local js click</div>
+    <br/>
+    <div id="hgl4" onclick="jump2();">load oc method</div>
+    <br/>
+</body>
+</html>
