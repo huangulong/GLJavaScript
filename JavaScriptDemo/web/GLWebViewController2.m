@@ -43,7 +43,8 @@
 - (void)loadRequest{
 //    NSURL *url = [NSURL URLWithString:@"index4.html" relativeToURL:[NSURL URLWithString:@"http://172.16.3.10/"]];
     NSString *str = [[NSBundle mainBundle] pathForResource:@"index2" ofType:@"html"];
-    NSURL *url = [NSURL URLWithString:str];
+    NSURL *url = [NSURL fileURLWithPath:str];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }
@@ -58,13 +59,17 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     NSLog(@"%s",__FUNCTION__);
-    [webView convertRect:CGRectMake(0, 0, 0, 0) toView:self.view.window];
-    [self userContentController:nil
-        didReceiveScriptMessage:nil];
+
 }
 
 - (void)userContentController:(nonnull WKUserContentController *)userContentController didReceiveScriptMessage:(nonnull WKScriptMessage *)message {
-    
+    if ([message.name isEqualToString:@"closePage"]) {
+        NSString * text = message.body;
+        NSLog(@"%@",text);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:true];
+        });
+    }
 }
 
 @end

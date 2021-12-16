@@ -8,9 +8,13 @@
 var hgl = [1,2,3,4,'h','g','l'];
 
 var closePage = function(){
-   document.getElementById('hgl2').innerHTML= 'closePage  方法被调用';
-   window.xueleapp.closePage(1,2);
-window.webkit.messageHandlers.closePage.postMessage(2);
+    document.getElementById('hgl2').innerHTML= 'closePage  方法被调用';
+    if (!window.xueleapp) {
+        window.webkit.messageHandlers.closePage.postMessage(2);
+    }else {
+        window.xueleapp.closePage(1,2);
+    }
+    
 }
 
 var jump = function(){

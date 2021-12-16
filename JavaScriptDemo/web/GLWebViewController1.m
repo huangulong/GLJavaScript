@@ -64,21 +64,7 @@ JSExportAs
     for (NSHTTPCookie * cookie in cookies) {
         NSLog(@"cookie -- %@",cookie.properties);
     }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-    while (true) {
-        NSLog(@"xxx");
-    }
-    NSInteger index = 0;
-#pragma clang diagnostic pop
     [self loadRequest];
-//    SEL sel = @selector(loadRequest2);
-//    SEL sel = sel_registerName("loadRequest2");
-    SEL sel = NSSelectorFromString(@"loadRequest2");
-    [self performSelector:sel withObject:nil];
-    return;
-
-    NSLog(@"hahaha");
 
 }
 
